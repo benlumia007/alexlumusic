@@ -10,7 +10,7 @@
 /**
  * Define namespace
  */
-namespace Initiator;
+namespace AlexLuMusic;
 
 /**
  *  Table of Content

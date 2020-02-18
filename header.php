@@ -12,7 +12,7 @@ use Benlumia007\Backdrop\Site\Site as site;
 use Benlumia007\Backdrop\View\View as menu;
 ?>
 <!doctype html>
-<html <?php language_attributes(); ?>>
+<html id="top" <?php language_attributes(); ?>>
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,10 +21,15 @@ use Benlumia007\Backdrop\View\View as menu;
 </head>
 <body <?php body_class(); ?>>
 <div id="container" class="site-container">
-	<header id="header" class="site-header">
-		<div class="site-branding">
-			<?php site::display( 'site-title' ); ?>
-			<?php site::display( 'site-description' ); ?>
+	<div class="site-top">
+		<div class="branding-navigation">
+			<div class="site-branding">
+				<?php site::display( 'site-title' ); ?>
+				<?php site::display( 'site-description' ); ?>
+			</div>
+			<?php menu::display( 'menu', [ 'primary' ] ); ?>
 		</div>
-		<?php menu::display( 'menu', [ 'primary' ] ); ?>
+	</div>
+	<header id="header" class="site-header custom-image">
+
 	</header>

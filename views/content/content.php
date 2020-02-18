@@ -19,6 +19,6 @@ use Benlumia007\Backdrop\Entry\Entry as entry;
 		<span class="entry-metadata"><?php entry::display( 'posted-on' ); ?></span>
 	</header>
 	<div class="entry-excerpt">
-		<?php the_excerpt(); ?>
+		<?php the_content(); ?>
 	</div>
 </article>

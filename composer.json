@@ -16,7 +16,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Initiator\\": "app/"
+            "AlexLuMusic\\": "app/"
 		},
 		"files":[
 			"app/framework.php",

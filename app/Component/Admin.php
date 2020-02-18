@@ -8,7 +8,7 @@
  * @author      Benjamin Lu ( https://benjlu.com )
  */
 
-namespace Initiator\Component;
+namespace AlexLuMusic\Component;
 
 use Benlumia007\Backdrop\Contracts\Admin\Admin as AdminPage;
 

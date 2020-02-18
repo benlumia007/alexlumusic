@@ -11,7 +11,7 @@
 /**
  * Define namespace
  */
-namespace Initiator;
+namespace AlexLuMusic;
 
 /**
  * Setup Theme Support.
@@ -78,7 +78,7 @@ add_action( 'after_setup_theme', function() {
 		/**
 		 * By add_image_size( 'initiator-large-thumbnails', 1170, 614, true );. This should be used for content that has no sidebars.
 		 */
-		add_image_size( 'initiator-large-thumbnails', 1170, 614, true );
+		add_image_size( 'alexlumusic-large-thumbnails', 960, 404, true );
 
 		/**
 		 * By add_theme_support( 'wp-block-styles' );. This should enable block styles on the frontend.
@@ -99,7 +99,11 @@ add_action( 'after_setup_theme', function() {
 		/**
 		 * Load theme translation.
 		 */
-		load_theme_textdomain( 'initiator', get_parent_theme_file_path( '/languages ' ) );
+		load_theme_textdomain( 'alexlumusic', get_parent_theme_file_path( '/languages ' ) );
+
+		add_filter( 'backdrop_post_types_override_portfolio', '__return_true' );
+
+
 	}
 );
 

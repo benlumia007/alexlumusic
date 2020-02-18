@@ -13,7 +13,7 @@
  *
  * 1.0 - Create a New Framework
  */
-namespace Initiator\Component;
+namespace AlexLuMusic\Component;
 
 use Benlumia007\Backdrop\Contracts\Customize\Customize as CustomizeAbstract;
 
@@ -31,7 +31,12 @@ class Customize extends CustomizeAbstract {
 	 * @access public
 	 * @param  object $manager customizer object.
 	 */
-	public function register_panels( $manager ) {}
+	public function register_panels( $manager ) {
+		$manager->add_panel( 'home_section', array(
+			'title' => esc_html__( 'Home Section', 'alexlumusic' ),
+			'priority' => 10,
+		) );
+	}
 
 	/**
 	 * Register register_sections
@@ -41,7 +46,23 @@ class Customize extends CustomizeAbstract {
 	 * @param  object $manager customizer object.
 	 */
 	public function register_sections( $manager ) {
-		$manager->get_section( 'colors' )->panel = 'theme_options';
+		/**
+		 * About Section
+		 */
+		$manager->add_section( 'about_section', array(
+			'title' => esc_html__( 'About Section', 'alexlumusic' ),
+			'panel' => 'home_section',
+			'priority' => 10,
+		) );
+
+		/**
+		 * Music Section
+		 */
+		$manager->add_section( 'music_section', array(
+			'title'    => esc_html__( 'Music Section', 'alexlumusic' ),
+			'panel'    => 'home_section',
+			'priority' => 15,
+		) );
 	}
 
 	/**
@@ -51,7 +72,49 @@ class Customize extends CustomizeAbstract {
 	 * @access public
 	 * @param  object $manager customizer object.
 	 */
-	public function register_settings( $manager ) {}
+	public function register_settings( $manager ) {
+		/**
+		 * Abot Settings
+		 */
+		$manager->add_setting( 'about_section_display', array(
+			'sanitize_callback' => 'Benlumia007\Backdrop\Helpers\Sanitize::checkbox',
+		) );
+
+		$manager->add_setting( 'about_section_title', array(
+			'default'           => esc_html__( 'About', 'alexlumusic' ),
+			'sanitize_callback' => 'sanitize_text_field',
+		) );
+
+		$manager->add_setting( 'about_section_description', array(
+			'default'           => esc_html__( 'What You Should Know About Me!', 'alexlumusic' ),
+			'sanitize_callback' => 'sanitize_text_field',
+		) );
+
+		$manager->add_setting( 'about_section_dropdown', array(
+			'sanitize_callback' => 'Benlumia007\Backdrop\Helpers\Sanitize::dropdown',
+		) );
+
+		/**
+		 * Music Settings
+		 */
+		$manager->add_setting( 'music_section_display', array(
+			'sanitize_callback' => 'Benlumia007\Backdrop\Helpers\Sanitize::checkbox',
+		) );
+
+		$manager->add_setting( 'music_section_title', array(
+			'default'           => esc_html__( 'About', 'alexlumusic' ),
+			'sanitize_callback' => 'sanitize_text_field',
+		) );
+
+		$manager->add_setting( 'music_section_description', array(
+			'default'           => esc_html__( 'What You Should Know About Me!', 'alexlumusic' ),
+			'sanitize_callback' => 'sanitize_text_field',
+		) );
+
+		$manager->add_setting( 'music_section_dropdown', array(
+			'sanitize_callback' => 'Benlumia007\Backdrop\Helpers\Sanitize::dropdown',
+		) );
+	}
 
 	/**
 	 * Register register_controls
@@ -60,5 +123,69 @@ class Customize extends CustomizeAbstract {
 	 * @access public
 	 * @param  object $manager customizer object.
 	 */
-	public function register_controls( $manager ) {}
+	public function register_controls( $manager ) {
+		/**
+		 * About Control
+		 */
+		$manager->add_control( 'about_section_display', array(
+			'label' => esc_html__( 'Enable About Section', 'alexlumusic' ),
+			'type' => 'checkbox',
+			'section' => 'about_section',
+			'settings' => 'about_section_display',
+		) );
+
+		$manager->add_control( 'about_section_title', array(
+			'label' => esc_html__( 'About Title', 'alexlumusic' ),
+			'section' => 'about_section',
+			'settings' => 'about_section_title',
+			'priority' => 15,
+		) );
+
+		$manager->add_control( 'about_section_description', array(
+			'label' => esc_html__( 'About Title', 'alexlumusic' ),
+			'section' => 'about_section',
+			'settings' => 'about_section_description',
+			'priority' => 20,
+		) );
+
+		$manager->add_control('about_section_dropdown', array(
+			'label'   => esc_html__( 'Custom Dropdown Pages', 'camaraderie' ),
+			'section' => 'about_section',
+			'settings' => 'about_section_dropdown',
+			'type'    => 'dropdown-pages',
+			'priority' => 25,
+		) );
+
+		/**
+		 * Music Control
+		 */
+		$manager->add_control( 'music_section_display', array(
+			'label' => esc_html__( 'Enable Music Section', 'alexlumusic' ),
+			'type' => 'checkbox',
+			'section' => 'music_section',
+			'settings' => 'music_section_display',
+		) );
+
+		$manager->add_control( 'music_section_title', array(
+			'label' => esc_html__( 'Music Title', 'alexlumusic' ),
+			'section' => 'music_section',
+			'settings' => 'music_section_title',
+			'priority' => 15,
+		) );
+
+		$manager->add_control( 'music_section_description', array(
+			'label' => esc_html__( 'Music Description', 'alexlumusic' ),
+			'section' => 'music_section',
+			'settings' => 'music_section_description',
+			'priority' => 20,
+		) );
+
+		$manager->add_control('music_section_dropdown', array(
+			'label'   => esc_html__( 'Custom Dropdown Pages', 'camaraderie' ),
+			'section' => 'music_section',
+			'settings' => 'music_section_dropdown',
+			'type'    => 'dropdown-pages',
+			'priority' => 25,
+		) );
+	}
 }
